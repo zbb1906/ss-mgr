@@ -37,7 +37,7 @@ plugins:
         password: 'lyyc12345'
         host: 'smtp-mail.outlook.com'
         port: 587
-    		
+        
     webgui:
         use: true
         host: '0.0.0.0'
