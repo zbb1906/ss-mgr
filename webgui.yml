@@ -33,10 +33,9 @@ plugins:
                 flow: 200000000000
     email:
         use: true
-        username: 'mmmwhy@hotmail.com'
-        password: 'lyyc12345'
-        host: 'smtp-mail.outlook.com'
-        port: 587
+        username: 'mmmwhy@126.com'
+        password: 'lyyc12612345'
+        host: 'smtp.126.com'
         
     webgui:
         use: true
