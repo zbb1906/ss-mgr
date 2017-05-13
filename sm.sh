@@ -36,9 +36,9 @@ install_soft_for_each(){
 		apt-get install -y nodejs
 	fi
 }
+install_soft_for_each
 #libsodium
-cd ~
-wget https://github.com/jedisct1/libsodium/releases/download/1.0.11/libsodium-1.0.11.tar.gz
+wget -N -P  ~ https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/libsodium-1.0.11.tar.gz
 tar xvf libsodium-1.0.11.tar.gz && rm -rf libsodium-1.0.11.tar.gz
 pushd libsodium-1.0.11
 ./configure --prefix=/usr && make
@@ -52,18 +52,19 @@ make DESTDIR=/usr install
 popd
 ldconfig
 #ss-liber
-cd ~
-wget https://github.com/shadowsocks/shadowsocks-libev/releases/download/v3.0.3/shadowsocks-libev-3.0.3.tar.gz
+wget -N -P  ~ https://github.com/shadowsocks/shadowsocks-libev/releases/download/v3.0.3/shadowsocks-libev-3.0.3.tar.gz
 tar -xf shadowsocks-libev-3.0.3.tar.gz && rm -rf shadowsocks-libev-3.0.3.tar.gz && cd shadowsocks-libev-3.0.3
 ./configure
 make && make install
 # ss-mgr
-git clone https://github.com/mmmwhy/shadowsocks-manager.git
+git clone https://github.com/mmmwhy/shadowsocks-manager.git "~"
 cd shadowsocks-manager
 npm i
+# node server.js
 screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:4000
 mkdir ~/.ssmgr
 wget -N -P  ~/.ssmgr/ https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/ss.yml
-screen -dmS ssmgr ssmgr -c ss.yml
+cd shadowsocks-manager/
+screen -dmS ss node server.js -c ~/.ssmgr/ss.yml
 wget -N -P  ~/.ssmgr/ https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/webgui.yml
-screen -dmS webgui ssmgr -c ~/.ssmgr/webgui.yml
+screen -dmS webgui node server.js -c ~/.ssmgr/webgui.yml
