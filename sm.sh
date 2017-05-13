@@ -66,8 +66,7 @@ make && make install
 # ss-mgr
 git clone https://github.com/mmmwhy/shadowsocks-manager.git "/root/shadowsocks-manager"
 cd /root/shadowsocks-manager
-npm install -g cnpm --registry=https://registry.npm.taobao.org
-cnpm i
+npm i
 # get_your_ip
 IPAddress=`wget http://members.3322.org/dyndns/getip -O - -q ; echo`;
 # node server.js
