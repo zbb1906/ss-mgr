@@ -33,7 +33,7 @@ install_soft_for_each(){
 		apt-get remove -y apache*
 		apt-get install -y build-essential npm wget curl tar git unzip gettext build-essential screen autoconf automake libtool openssl libssl-dev zlib1g-dev xmlto asciidoc libpcre3-dev libudns-dev libev-dev vim
 		curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-		apt-get install -y nodejs
+		yum install -y nodejs
 	fi
 }
 install_soft_for_each
