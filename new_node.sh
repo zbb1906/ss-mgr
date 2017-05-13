@@ -62,3 +62,9 @@ git clone https://github.com/mmmwhy/shadowsocks-manager.git "/root/shadowsocks-m
 cd /root/shadowsocks-manager
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 cnpm i
+# node server.js
+screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:4000
+mkdir /root/.ssmgr
+wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/ss.yml
+cd /root/shadowsocks-manager/
+screen -dmS ss node server.js -c /root/.ssmgr/ss.yml
