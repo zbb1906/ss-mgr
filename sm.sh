@@ -38,7 +38,7 @@ install_soft_for_each(){
 }
 install_soft_for_each
 #libsodium
-wget -N -P  ~ https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/libsodium-1.0.11.tar.gz
+wget -N -P  /root https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/libsodium-1.0.11.tar.gz
 tar xvf libsodium-1.0.11.tar.gz && rm -rf libsodium-1.0.11.tar.gz
 pushd libsodium-1.0.11
 ./configure --prefix=/usr && make
@@ -52,20 +52,23 @@ make DESTDIR=/usr install
 popd
 ldconfig
 #ss-liber
-wget -N -P  ~ https://github.com/shadowsocks/shadowsocks-libev/releases/download/v3.0.3/shadowsocks-libev-3.0.3.tar.gz
+wget -N -P  /root https://github.com/shadowsocks/shadowsocks-libev/releases/download/v3.0.3/shadowsocks-libev-3.0.3.tar.gz
 tar -xf shadowsocks-libev-3.0.3.tar.gz && rm -rf shadowsocks-libev-3.0.3.tar.gz && cd shadowsocks-libev-3.0.3
 ./configure
 make && make install
 # ss-mgr
 git clone https://github.com/mmmwhy/shadowsocks-manager.git "/root/shadowsocks-manager"
 cd /root/shadowsocks-manager
-npm install -g cnpm --registry=https://registry.npm.taobao.org
-cnpm i
+npm i
+# get_your_ip
+IPAddress=`wget http://members.3322.org/dyndns/getip -O - -q ; echo`;
 # node server.js
 screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:4000
-mkdir ~/.ssmgr
-wget -N -P  ~/.ssmgr/ https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/ss.yml
+mkdir /root/.ssmgr
+wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/ss.yml
+sed -i "s#127.0.0.1#${IPAddress}#g" /root/.ssmgr/ss.yml
 cd /root/shadowsocks-manager/
-screen -dmS ss node server.js -c ~/.ssmgr/ss.yml
-wget -N -P  ~/.ssmgr/ https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/webgui.yml
-screen -dmS webgui node server.js -c ~/.ssmgr/webgui.yml
+screen -dmS ss node server.js -c /root/.ssmgr/ss.yml
+wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/webgui.yml
+sed -i "s#127.0.0.1#${IPAddress}#g" /root/.ssmgr/webgui.yml
+screen -dmS webgui node server.js -c /root/.ssmgr/webgui.yml
