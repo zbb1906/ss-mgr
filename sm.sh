@@ -52,7 +52,7 @@ make DESTDIR=/usr install
 popd
 ldconfig
 #ss-liber
-wget -N -P  /root https://github.com/shadowsocks/shadowsocks-libev/releases/download/v3.0.3/shadowsocks-libev-3.0.3.tar.gz
+wget -N -P  /root https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/shadowsocks-libev-3.0.3.tar.gz
 tar -xf shadowsocks-libev-3.0.3.tar.gz && rm -rf shadowsocks-libev-3.0.3.tar.gz && cd shadowsocks-libev-3.0.3
 ./configure
 make && make install
