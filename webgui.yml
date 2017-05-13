@@ -14,7 +14,7 @@ plugins:
         use: true
         pay:
             hour:
-                price: 0.03
+                price: 0.05
                 flow: 500000000
             day:
                 price: 0.5
