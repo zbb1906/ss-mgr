@@ -59,7 +59,8 @@ make && make install
 # ss-mgr
 git clone https://github.com/mmmwhy/shadowsocks-manager.git "/root/shadowsocks-manager"
 cd /root/shadowsocks-manager
-npm i
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+cnpm i
 # node server.js
 screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:4000
 mkdir ~/.ssmgr
