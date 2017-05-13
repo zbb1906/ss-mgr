@@ -57,14 +57,14 @@ tar -xf shadowsocks-libev-3.0.3.tar.gz && rm -rf shadowsocks-libev-3.0.3.tar.gz 
 ./configure
 make && make install
 # ss-mgr
-git clone https://github.com/mmmwhy/shadowsocks-manager.git "~"
-cd shadowsocks-manager
+git clone https://github.com/mmmwhy/shadowsocks-manager.git "/root/shadowsocks-manager"
+cd /root/shadowsocks-manager
 npm i
 # node server.js
 screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:4000
 mkdir ~/.ssmgr
 wget -N -P  ~/.ssmgr/ https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/ss.yml
-cd shadowsocks-manager/
+cd /root/shadowsocks-manager/
 screen -dmS ss node server.js -c ~/.ssmgr/ss.yml
 wget -N -P  ~/.ssmgr/ https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/webgui.yml
 screen -dmS webgui node server.js -c ~/.ssmgr/webgui.yml
