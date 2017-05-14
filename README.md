@@ -1,7 +1,6 @@
-**[shadowsocks-manager](https://github.com/shadowsocks/shadowsocks-manager)**是一个非常帅气的ss多用户管理程序，搭建起来稍微有点麻烦，因此写了本一键脚本。
+[shadowsocks-manager是一个非常帅气的ss多用户管理程序，搭建起来稍微有点麻烦，因此写了本一键脚本。
 
 ---
-
 
 # 效果
 
@@ -22,15 +21,15 @@ centos7 X64完美兼容，其他版本还没有测试，理论上可用。
 # 安装脚本
 
 ## 安装ss-mgr
-
+本脚本包括主控端和节点端，安装时，自动添加本vps作为一个节点。
 ```
 wget -N --no-check-certificate https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/sm.sh && chmod +x sm.sh && bash sm.sh
 ```
-坐等就可以了，没有什么需要做的东西。新安装的时候，自动会将本vps添加到ss-mgr内。
+坐等就可以了，没有什么需要做的东西。
 打开ip地址，就可以看到ss-mgr了。
 
 ## 增加节点
-本脚本为：已有vps安装好ss-mgr，添加新节点时，在新节点vps使用的脚本。
+本脚本为：已有**vps安装好主控端**，添加新节点时，在**新节点**使用的脚本。
 ```
 wget -N --no-check-certificate https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/sm_node.sh && chmod +x sm_node.sh && bash sm_node.sh
 ```
