@@ -68,9 +68,9 @@ install_ss_libev(){
 	make && make install
 }
 install_ss_ubuntu(){
-	sudo add-apt-repository ppa:max-c-lv/shadowsocks-libev
-	sudo apt-get update
-	sudo apt install shadowsocks-libev
+	sudo add-apt-repository ppa:max-c-lv/shadowsocks-libev -y
+	sudo apt-get update -y
+	sudo apt install shadowsocks-libev -y
 }
 install_ss_for_each(){
 	if [[ ${release} = "centos" ]]; then
@@ -86,7 +86,7 @@ install_ss_mgr(){
 	install_ss_for_each
 	git clone https://github.com/mmmwhy/shadowsocks-manager.git "/root/shadowsocks-manager"
 	cd /root/shadowsocks-manager
-	npm i
+	npm install -d
 	ln -s /usr/local/nodejs/node-v6.9.1-linux-x64/bin/ssmgr /usr/local/bin/ssmgr
 	screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:4000
 }
