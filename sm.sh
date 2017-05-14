@@ -78,10 +78,10 @@ install_ss_mgr
 # get_your_ip
 IPAddress=`wget http://members.3322.org/dyndns/getip -O - -q ; echo`;
 # node server.js
-screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:4000
 mkdir /root/.ssmgr
 wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/ss.yml
 sed -i "s#127.0.0.1#${IPAddress}#g" /root/.ssmgr/ss.yml
+screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:4000
 cd /root/shadowsocks-manager/
 screen -dmS ss node server.js -c /root/.ssmgr/ss.yml
 wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/webgui.yml
