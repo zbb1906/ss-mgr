@@ -21,26 +21,27 @@ check_sys(){
 }
 install_node(){
 	mkdir /usr/local/nodejs
-	wget -N --no-check-certificate https://nodejs.org/dist/v6.9.1/node-v6.9.1-linux-x86.tar.gz
-	tar -xf node-v6.9.1-linux-x86.tar.gz -C /usr/local/nodejs/
-	rm -rf node-v6.9.1-linux-x86.tar.gz
-	ln -s /usr/local/nodejs/node-v6.9.1-linux-x86/bin/node /usr/local/bin/node
-	ln -s /usr/local/nodejs/node-v6.9.1-linux-x86/bin/npm /usr/local/bin/npm
+ 	wget -N --no-check-certificate https://nodejs.org/dist/v6.9.1/node-v6.9.1-linux-x64.tar.gz
+ 	tar -xf node-v6.9.1-linux-x64.tar.gz -C /usr/local/nodejs/
+ 	rm -rf node-v6.9.1-linux-x64.tar.gz
+ 	ln -s /usr/local/nodejs/node-v6.9.1-linux-x64/bin/node /usr/local/bin/node
+	ln -s /usr/local/nodejs/node-v6.9.1-linux-x64/bin/npm /usr/local/bin/npm
+	npm install -g cnpm --registry=https://registry.npm.taobao.org
+	ln -s /usr/local/nodejs/node-v6.9.1-linux-x64/bin/cnpm /usr/local/bin/cnpm
 }
 install_soft_for_each(){
 	check_sys
 	if [[ ${release} = "centos" ]]; then
 		yum groupinstall "Development Tools" -y
 		yum install -y wget curl tar unzip -y
-		yum install -y gcc gettext-devel unzip npm autoconf automake make zlib-devel libtool xmlto asciidoc udns-devel libev-devel vim
+		yum install -y gcc gettext-devel unzip autoconf automake make zlib-devel libtool xmlto asciidoc udns-devel libev-devel vim
 		yum install -y pcre pcre-devel perl perl-devel cpio expat-devel openssl-devel mbedtls-devel screen nano
 		install_node
 	else
 		apt-get update
 		apt-get remove -y apache*
 		apt-get install -y build-essential npm wget curl tar git unzip gettext build-essential screen autoconf automake libtool openssl libssl-dev zlib1g-dev xmlto asciidoc libpcre3-dev libudns-dev libev-dev vim
-		curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-		apt-get install -y nodejs
+		install_node
 	fi
 }
 install_soft_for_each
@@ -67,7 +68,7 @@ make && make install
 # ss-mgr
 git clone https://github.com/mmmwhy/shadowsocks-manager.git "/root/shadowsocks-manager"
 cd /root/shadowsocks-manager
-npm i
+cnpm i
 # get_your_ip
 IPAddress=`wget http://members.3322.org/dyndns/getip -O - -q ; echo`;
 # node server.js
