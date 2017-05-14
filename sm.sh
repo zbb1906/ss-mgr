@@ -81,7 +81,6 @@ ss_mgr_s(){
 	install_ss_mgr
 	mkdir /root/.ssmgr
 	wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/ss.yml
-	#sed -i "s#127.0.0.1#${IPAddress}#g" /root/.ssmgr/ss.yml
 	cd /root/shadowsocks-manager/
 	screen -dmS ss node server.js -c /root/.ssmgr/ss.yml
 }
@@ -89,10 +88,16 @@ ss_mgr_m(){
 	ss_mgr_s
 	cd /root/shadowsocks-manager/
 	wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/webgui.yml
-	#sed -i "s#127.0.0.1#${IPAddress}#g" /root/.ssmgr/webgui.yml
+	sed -i "s#127.0.0.1#${IPAddress}#g" /root/.ssmgr/webgui.yml
 	screen -dmS webgui node server.js -c /root/.ssmgr/webgui.yml
 }
 ss_mgr_m
 iptables -I INPUT -p tcp -m tcp --dport 104 -j ACCEPT
 iptables -I INPUT -p tcp -m tcp --dport 1024: -j ACCEPT
 iptables-save
+	echo "#############################################################"
+	echo "# Install SS-mgr  Success                                   #"
+	echo "# Github: https://github.com/mmmwhy/ss-mgr                  #"
+	echo "# Author: Feiyang.li                                        #"
+	echo "# http://feiyang.li/2017/05/14/ss-mgr/index.html            #"
+	echo "#############################################################"

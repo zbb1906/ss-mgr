@@ -81,19 +81,19 @@ ss_mgr_s(){
 	install_ss_mgr
 	mkdir /root/.ssmgr
 	wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/ss.yml
-	sed -i "s#123456#${Usermukey}#g" /root/.ssmgr/webgui.yml
+	sed -i "s#123456#${password}#g" /root/.ssmgr/ss.yml
 	cd /root/shadowsocks-manager/
 	screen -dmS ss node server.js -c /root/.ssmgr/ss.yml
 }
-read -p "Please input your password(like:123456): " Usermukey
-Usermukey=${Usermukey:-"123456"}
+read -p "Please input your password(like:123456): " password
+password=${password:-"123456"}
 ss_mgr_s
 iptables -I INPUT -p tcp -m tcp --dport 104 -j ACCEPT
 iptables -I INPUT -p tcp -m tcp --dport 1024: -j ACCEPT
 iptables-save
 	echo "#############################################################"
-	echo "#                Install SS-mgr  success                    #"
+	echo "# Install SM-node Success                                   #"
 	echo "# Github: https://github.com/mmmwhy/ss-mgr                  #"
 	echo "# Author: Feiyang.li                                        #"
-	echo "# http://feiyang.li/2017/05/09/ss-shell/index.html          #"
+	echo "# http://feiyang.li/2017/05/14/ss-mgr/index.html            #"
 	echo "#############################################################"
