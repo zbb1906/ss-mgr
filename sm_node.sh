@@ -26,7 +26,7 @@ install_soft_for_each(){
 	if [[ ${release} = "centos" ]]; then
 		yum groupinstall "Development Tools" -y
 		yum install -y wget curl tar unzip -y
-		yum install -y gcc gettext-devel unzip autoconf automake make zlib-devel libtool xmlto asciidoc udns-devel libev-devel vim
+		yum install -y gcc gettext-devel unzip autoconf automake make zlib-devel libtool xmlto asciidoc udns-devel libev-devel vim epel-release libsodium-devel libsodium
 		yum install -y pcre pcre-devel perl perl-devel cpio expat-devel openssl-devel mbedtls-devel screen nano
 	else
 		apt-get update
@@ -41,10 +41,9 @@ install_nodejs(){
  	rm -rf node-v6.9.1-linux-x64.tar.gz
  	ln -s /usr/local/nodejs/node-v6.9.1-linux-x64/bin/node /usr/local/bin/node
 	ln -s /usr/local/nodejs/node-v6.9.1-linux-x64/bin/npm /usr/local/bin/npm
-	npm install -g cnpm --registry=https://registry.npm.taobao.org
-	ln -s /usr/local/nodejs/node-v6.9.1-linux-x64/bin/cnpm /usr/local/bin/cnpm
 }
 install_libsodium(){
+	cd /root
 	wget -N -P  /root https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/libsodium-1.0.11.tar.gz
 	tar xvf libsodium-1.0.11.tar.gz && rm -rf libsodium-1.0.11.tar.gz
 	pushd libsodium-1.0.11
@@ -73,7 +72,7 @@ install_ss_mgr(){
 	install_ss_libev
 	git clone https://github.com/mmmwhy/shadowsocks-manager.git "/root/shadowsocks-manager"
 	cd /root/shadowsocks-manager
-	cnpm i
+	npm i
 	ln -s /usr/local/nodejs/node-v6.9.1-linux-x64/bin/ssmgr /usr/local/bin/ssmgr
 	screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:4000
 }
