@@ -44,31 +44,38 @@ install_soft_for_each(){
 		install_node
 	fi
 }
-install_soft_for_each
-#libsodium
-wget -N -P  /root https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/libsodium-1.0.11.tar.gz
-tar xvf libsodium-1.0.11.tar.gz && rm -rf libsodium-1.0.11.tar.gz
-pushd libsodium-1.0.11
-./configure --prefix=/usr && make
-make install
-popd
-wget https://tls.mbed.org/download/mbedtls-2.4.0-gpl.tgz
-tar xvf mbedtls-2.4.0-gpl.tgz && rm -rf mbedtls-2.4.0-gpl.tgz
-pushd mbedtls-2.4.0
-make SHARED=1 CFLAGS=-fPIC
-make DESTDIR=/usr install
-popd
-ldconfig
-#ss-liber
-wget -N -P  /root https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/shadowsocks-libev-3.0.3.tar.gz
-cd /root 
-tar -xf shadowsocks-libev-3.0.3.tar.gz && rm -rf shadowsocks-libev-3.0.3.tar.gz && cd shadowsocks-libev-3.0.3
-./configure
-make && make install
-# ss-mgr
-git clone https://github.com/mmmwhy/shadowsocks-manager.git "/root/shadowsocks-manager"
-cd /root/shadowsocks-manager
-cnpm i
+
+install_libsodium(){
+	install_soft_for_each
+	wget -N -P  /root https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/libsodium-1.0.11.tar.gz
+	tar xvf libsodium-1.0.11.tar.gz && rm -rf libsodium-1.0.11.tar.gz
+	pushd libsodium-1.0.11
+	./configure --prefix=/usr && make
+	make install
+	popd
+	wget http://home.ustc.edu.cn/~mmmwhy/mbedtls-2.4.0-gpl.tgz
+	tar xvf mbedtls-2.4.0-gpl.tgz && rm -rf mbedtls-2.4.0-gpl.tgz
+	pushd mbedtls-2.4.0
+	make SHARED=1 CFLAGS=-fPIC
+	make DESTDIR=/usr install
+	popd
+	ldconfig
+}
+install_ss_libev(){
+	install_libsodium
+	cd /root 
+	wget -N -P  /root https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/shadowsocks-libev-3.0.3.tar.gz
+	tar -xf shadowsocks-libev-3.0.3.tar.gz && rm -rf shadowsocks-libev-3.0.3.tar.gz && cd shadowsocks-libev-3.0.3
+	./configure
+	make && make install
+}
+install_ss_mgr(){
+	install_ss_libev
+	git clone https://github.com/mmmwhy/shadowsocks-manager.git "/root/shadowsocks-manager"
+	cd /root/shadowsocks-manager
+	cnpm i
+}
+install_ss_mgr
 # get_your_ip
 IPAddress=`wget http://members.3322.org/dyndns/getip -O - -q ; echo`;
 # node server.js
@@ -81,3 +88,5 @@ screen -dmS ss node server.js -c /root/.ssmgr/ss.yml
 wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/webgui.yml
 sed -i "s#127.0.0.1#${IPAddress}#g" /root/.ssmgr/webgui.yml
 screen -dmS webgui node server.js -c /root/.ssmgr/webgui.yml
+iptables -I INPUT -p tcp -m tcp --dport 1024: -j ACCEPT
+iptables-save
