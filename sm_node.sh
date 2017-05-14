@@ -62,6 +62,8 @@ install_ss_libev(){
 	cd /root 
 	wget -N -P  /root https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/shadowsocks-libev-3.0.3.tar.gz
 	tar -xf shadowsocks-libev-3.0.3.tar.gz && rm -rf shadowsocks-libev-3.0.3.tar.gz && cd shadowsocks-libev-3.0.3
+	yum install epel-release -y
+	yum install gcc gettext autoconf libtool automake make pcre-devel asciidoc xmlto udns-devel libev-devel -y
 	./configure
 	make && make install
 }
