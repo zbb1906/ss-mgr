@@ -73,7 +73,7 @@ install_ss_mgr(){
 	install_ss_libev
 	git clone https://github.com/mmmwhy/shadowsocks-manager.git "/root/shadowsocks-manager"
 	cd /root/shadowsocks-manager
-	cnpm i -g shadowsocks-manager
+	cnpm i
 	ln -s /usr/local/nodejs/node-v6.9.1-linux-x64/bin/ssmgr /usr/local/bin/ssmgr
 	screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:4000
 }
@@ -82,11 +82,12 @@ ss_mgr_s(){
 	mkdir /root/.ssmgr
 	wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/ss.yml
 	#sed -i "s#127.0.0.1#${IPAddress}#g" /root/.ssmgr/ss.yml
+	cd /root/shadowsocks-manager/
+	screen -dmS ss node server.js -c /root/.ssmgr/ss.yml
 }
 ss_mgr_m(){
 	ss_mgr_s
 	cd /root/shadowsocks-manager/
-	screen -dmS ss node server.js -c /root/.ssmgr/ss.yml
 	wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/webgui.yml
 	#sed -i "s#127.0.0.1#${IPAddress}#g" /root/.ssmgr/webgui.yml
 	screen -dmS webgui node server.js -c /root/.ssmgr/webgui.yml

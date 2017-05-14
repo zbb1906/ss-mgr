@@ -33,9 +33,9 @@ plugins:
                 flow: 200000000000
     email:
         use: true
-        username: 'mmmwhy@126.com'
-        password: 'lyyc12612345'
-        host: 'smtp.126.com'
+        username: 'mmmxcc@yeah.net'
+        password: 'yue12345'
+        host: 'smtp.yeah.net'
         
     webgui:
         use: true
