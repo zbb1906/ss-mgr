@@ -26,7 +26,7 @@ install_soft_for_each(){
 	if [[ ${release} = "centos" ]]; then
 		yum groupinstall "Development Tools" -y
 		yum install -y wget curl tar unzip -y
-		yum install -y gcc gettext-devel unzip autoconf automake make zlib-devel libtool xmlto asciidoc udns-devel libev-devel vim epel-release libsodium-devel libsodium
+		yum install -y gcc gettext gettext-devel unzip autoconf automake make zlib-devel libtool xmlto asciidoc udns-devel libev-devel vim epel-release libsodium-devel libsodium
 		yum install -y pcre pcre-devel perl perl-devel cpio expat-devel openssl-devel mbedtls-devel screen nano
 	else
 		apt-get update
@@ -65,11 +65,23 @@ install_ss_libev(){
 	./configure
 	make && make install
 }
+install_ss_ubuntu(){
+	sudo add-apt-repository ppa:max-c-lv/shadowsocks-libev
+	sudo apt-get update
+	sudo apt install shadowsocks-libev
+}
+install_ss_for_each(){
+	if [[ ${release} = "centos" ]]; then
+		install_ss_libev
+	else
+		install_ss_ubuntu
+	fi
+}
 install_ss_mgr(){
 	install_soft_for_each
 	install_nodejs
 	install_libsodium
-	install_ss_libev
+	install_ss_for_each
 	git clone https://github.com/mmmwhy/shadowsocks-manager.git "/root/shadowsocks-manager"
 	cd /root/shadowsocks-manager
 	npm i
