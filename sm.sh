@@ -44,7 +44,6 @@ install_soft_for_each(){
 		install_node
 	fi
 }
-
 install_libsodium(){
 	install_soft_for_each
 	wget -N -P  /root https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/libsodium-1.0.11.tar.gz
