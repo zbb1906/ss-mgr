@@ -2,12 +2,16 @@
 
 ---
 
+
 # 效果
 
 ![](http://cdn.mmmxcc.cn/blog/20170513/135344468.png)
 ![](http://cdn.mmmxcc.cn/blog/20170513/135349156.png)
 ![](http://cdn.mmmxcc.cn/blog/20170513/135357497.png)
 ![](http://cdn.mmmxcc.cn/blog/20170513/140400232.png)
+
+github： https://github.com/mmmwhy/ss-mgr
+示例网站：http://ss.feiyang.li/
 
 # 特点
 - 非常帅气，各种图表一上，是不是很牛逼的感觉。
@@ -17,13 +21,16 @@
 centos7 X64完美兼容，其他版本还没有测试，理论上可用。
 # 安装脚本
 
-## 新安装
+## 安装ss-mgr
+
 ```
 wget -N --no-check-certificate https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/sm.sh && chmod +x sm.sh && bash sm.sh
 ```
-坐等就可以了，没有什么需要做的东西。
+坐等就可以了，没有什么需要做的东西。新安装的时候，自动会将本vps添加到ss-mgr内。
+打开ip地址，就可以看到ss-mgr了。
+
 ## 增加节点
-- 使用增加节点脚本
+本脚本为：已有vps安装好ss-mgr，添加新节点时，在新节点vps使用的脚本。
 ```
 wget -N --no-check-certificate https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/sm_node.sh && chmod +x sm_node.sh && bash sm_node.sh
 ```
