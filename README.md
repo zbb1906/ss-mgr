@@ -17,7 +17,8 @@ github： https://github.com/mmmwhy/ss-mgr
 - 支持支付宝付款对账，站长们多出来的vps可以不用再继续吃灰了。
 
 # 要求
-centos7 X64完美兼容，其他版本还没有测试，理论上可用。
+centos7 X64，在腾讯云，digitialocean,interserver,ethernetservers通过测试。
+其他版本还没有测试，理论上可用。
 # 安装脚本
 
 ## 安装ss-mgr
@@ -48,7 +49,13 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/mmmwhy/ss-mgr/m
 - 被墙掉的资源都换成国内的了。
 
 鉴于很多小鸡可能带不动docker，因此这里使用传统方式安装，速度会慢一些。
-
+其中，三条重要命令开启是通过`screen`完成的。
+```
+screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:4000
+cd /root/shadowsocks-manager/
+screen -dmS ss node server.js -c /root/.ssmgr/ss.yml
+screen -dmS webgui node server.js -c /root/.ssmgr/webgui.yml
+```
 ---
 因为本工具较难配置，因此如果有问题的话，可以通过tg联系我。https://t.me/mmmwhy
 
