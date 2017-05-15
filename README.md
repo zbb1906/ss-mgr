@@ -10,7 +10,8 @@
 ![](http://cdn.mmmxcc.cn/blog/20170513/140400232.png)
 
 github： https://github.com/mmmwhy/ss-mgr
-示例网站：http://ss.feiyang.li/
+
+示例网站：http://gz.feiyang.li/
 
 # 特点
 - 非常帅气，各种图表一上，是不是很牛逼的感觉。
