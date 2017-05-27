@@ -11,7 +11,7 @@
 
 github： https://github.com/mmmwhy/ss-mgr
 
-示例网站：~~http://gz.feiyang.li/~~
+示例网站：https://wall.gyteng.com
 
 # 特点
 - 非常帅气，各种图表一上，是不是很牛逼的感觉。
