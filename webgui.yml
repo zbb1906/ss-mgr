@@ -34,7 +34,7 @@ plugins:
     email:
         use: true
         username: 'mmmwhy@hotmail.com'
-        password: 'lyyc12345'
+        password: 'Lyyc.12345'
         host: 'smtp-mail.outlook.com'
         port: 587
         
