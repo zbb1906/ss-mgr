@@ -58,7 +58,7 @@ screen -dmS ss node server.js -c /root/.ssmgr/ss.yml
 screen -dmS webgui node server.js -c /root/.ssmgr/webgui.yml
 ```
 ---
-因为本工具较难配置，因此如果有问题的话，可以通过tg联系我。https://t.me/mmmwhy
+因为本工具较难配置，因此如果有问题的话，可以通过tg联系我。https://t.me/feiyangss
 
 ---
 参考以下链接：
