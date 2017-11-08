@@ -32,21 +32,21 @@ plugins:
                 price: 120
                 flow: 200000000000
     email:
-        use: true
-        username: 'mmmwhy@hotmail.com'
-        password: 'Lyyc.12345'
-        host: 'smtp-mail.outlook.com'
+        use: false
+        username: ''
+        password: ''
+        host: ''
         port: 587
         
     webgui:
         use: true
         host: '0.0.0.0'
-        port: '80'
+        port: '888'
         site: 'http://127.0.0.1'
         gcmSenderId: '456102641793'
         gcmAPIKey: 'AAAAGzzdqrE:XXXXXXXXXXXXXX'
     alipay:
-        use: true
+        use: false
         appid: 
         notifyUrl: ''
         merchantPrivateKey: ''

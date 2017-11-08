@@ -44,15 +44,15 @@ install_nodejs(){
 }
 install_libsodium(){
 	cd /root
-	wget -N -P  /root https://raw.githubusercontent.com/mmmwhy/ss-panel-and-ss-py-mu/master/libsodium-1.0.11.tar.gz
-	tar xvf libsodium-1.0.11.tar.gz && rm -rf libsodium-1.0.11.tar.gz
-	pushd libsodium-1.0.11
+	wget -N -P  /root https://download.libsodium.org/libsodium/releases/libsodium-1.0.13.tar.gz
+	tar xvf libsodium-1.0.13.tar.gz && rm -rf libsodium-1.0.13.tar.gz
+	pushd libsodium-1.0.13
 	./configure --prefix=/usr && make
 	make install
 	popd
-	wget http://home.ustc.edu.cn/~mmmwhy/mbedtls-2.4.0-gpl.tgz
-	tar xvf mbedtls-2.4.0-gpl.tgz && rm -rf mbedtls-2.4.0-gpl.tgz
-	pushd mbedtls-2.4.0
+	wget https://tls.mbed.org/download/mbedtls-2.6.0-gpl.tgz
+	tar xvf mbedtls-2.6.0-gpl.tgz && rm -rf mbedtls-2.6.0-gpl.tgz
+	pushd mbedtls-2.6.0
 	make SHARED=1 CFLAGS=-fPIC
 	make DESTDIR=/usr install
 	popd
@@ -60,8 +60,8 @@ install_libsodium(){
 }
 install_ss_libev(){
 	cd /root 
-	wget -N -P  /root https://raw.githubusercontent.com/mmmwhy/ss-mgr/master/shadowsocks-libev-3.0.3.tar.gz
-	tar -xf shadowsocks-libev-3.0.3.tar.gz && rm -rf shadowsocks-libev-3.0.3.tar.gz && cd shadowsocks-libev-3.0.3
+	wget -N -P  /root https://github.com/shadowsocks/shadowsocks-libev/releases/download/v3.1.0/shadowsocks-libev-3.1.0.tar.gz
+	tar -xf shadowsocks-libev-3.1.0.tar.gz && rm -rf shadowsocks-libev-3.1.0.tar.gz && cd shadowsocks-libev-3.1.0
 	yum install epel-release -y
 	yum install gcc gettext autoconf libtool automake make pcre-devel asciidoc xmlto udns-devel libev-devel -y
 	./configure
@@ -101,9 +101,7 @@ ss_mgr_s(){
 read -p "Please input your password(like:123456): " password
 password=${password:-"123456"}
 ss_mgr_s
-iptables -I INPUT -p tcp -m tcp --dport 104 -j ACCEPT
-iptables -I INPUT -p tcp -m tcp --dport 1024: -j ACCEPT
-iptables-save
+
 	echo "#############################################################"
 	echo "# Install SM-node Success                                   #"
 	echo "# Github: https://github.com/mmmwhy/ss-mgr                  #"
